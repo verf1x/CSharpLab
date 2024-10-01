@@ -11,7 +11,7 @@ internal class GameWindow
 
     public GameWindow()
     {
-        _helper = new GameHelper(ForegroundColor);
+        _helper = GameHelper.Instance;
         Run();
     }
 

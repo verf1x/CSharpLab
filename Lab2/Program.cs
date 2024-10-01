@@ -10,6 +10,6 @@ internal class Program
         InputEncoding = Encoding.UTF8;
         OutputEncoding = Encoding.UTF8;
 
-        new GameWindow().Run();
+        GameWindow.Instance.Run();
     }
 }
