@@ -4,16 +4,10 @@ namespace Lab2;
 
 internal class GameWindow
 {
-    private readonly GameHelper _helper;
     private static GameWindow _instance;
 
     public static GameWindow Instance => _instance ??= new GameWindow();
 
-    public GameWindow()
-    {
-        _helper = GameHelper.Instance;
-        Run();
-    }
 
     public void Run()
     {
@@ -22,8 +16,8 @@ internal class GameWindow
         while (!isExit)
         {
             Clear();
-            _helper.PrintTitle();
-            _helper.PrintMenu();
+            GameHelper.Instance.PrintTitle();
+            GameHelper.Instance.PrintMenu();
 
             if (int.TryParse(ReadLine(), out int choice))
             {
@@ -44,13 +38,15 @@ internal class GameWindow
                 }
             }
         }
+
+        GameHelper.Instance.MoveToBlankPage();
     }
 
     private void PlayGame()
     {
         //TODO: Реализовать игру
 
-        _helper.MoveToBlankPage();
+        GameHelper.Instance.MoveToBlankPage();
         WriteLine("Крутая математичсекая игра\n");
 
         ReturnToMenu();
@@ -64,14 +60,14 @@ internal class GameWindow
 
     private void PrintAuthor()
     {
-        _helper.MoveToBlankPage();
+        GameHelper.Instance.MoveToBlankPage();
         WriteLine("Автор\tКупцов Никита Александрович\tГруппа\t6102-090301D\n");
         ReturnToMenu();
     }
 
     private bool ConfirmExit()
     {
-        _helper.MoveToBlankPage();
+        GameHelper.Instance.MoveToBlankPage();
 
         WriteLine("Вы уверены, что хотите выйти? (д/н): ");
 
@@ -79,7 +75,7 @@ internal class GameWindow
 
         while (input != "д" && input != "н")
         {
-            _helper.MoveToBlankPage();
+            GameHelper.Instance.MoveToBlankPage();
 
             WriteLine("Ошибка ввода. Введите 'д' или 'н'.");
             Write("Вы уверены, что хотите выйти? (д/н): ");
