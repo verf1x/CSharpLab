@@ -43,7 +43,7 @@ internal class Game
         GuessCorrectResult(a, b);
     }
 
-    public void GuessCorrectResult(double a, double b) //TODO
+    public void GuessCorrectResult(double a, double b)
     {
         Write("\nУгадай ответ (дробь с 2 знаками после запятой): ");
 
@@ -53,29 +53,37 @@ internal class Game
 
         while (answersCount < 3)
         {
-            if (double.TryParse(ReadLine(), out double userAnswer))
+            answersCount = CheckAnswer(correctResult, answersCount);
+        }
+
+        if (answersCount == 3)
+        {
+            PrintGameResultMessage("Вы проиграли(( Тильт((");
+        }
+    }
+
+    private int CheckAnswer(double correctResult, int answersCount)
+    {
+        if (double.TryParse(ReadLine(), out double userAnswer))
+        {
+            if (userAnswer != correctResult)
             {
-                if(userAnswer != correctResult)
-                {
-                    WriteLine("Неправильный ответ. Попробуйте снова.");
-                    answersCount++;
-                }
-                else
-                {
-                    PrintGameResultMessage("Вы угадали! Шок!");
-                    answersCount = 3;
-                }
+                WriteLine("Неправильный ответ. Попробуйте снова.");
+                answersCount++;
             }
             else
             {
-                WriteLine("Неправильный ввод. Попробуйте снова.");
-            }
-
-            if (++answersCount == 3)
-            {
-                PrintGameResultMessage("Вы проиграли(( Тильт((");
+                PrintGameResultMessage("Вы угадали! Шок!");
+                answersCount = 4;
             }
         }
+        else
+        {
+            WriteLine("Неправильный ввод. Попробуйте снова.");
+            answersCount++;
+        }
+
+        return answersCount;
     }
 
     private double CalculateFormula(double a, double b) //a = 2, b = 4 ~ 7.82

@@ -62,6 +62,8 @@ internal class Application
     {
         MoveToBlankPage();
         WriteLine("Автор\tКупцов Никита Александрович\tГруппа\t6102-090301D\n");
+        WriteLine("Нажмите любую клавишу для возврата в меню...");
+        ReadKey();
         ReturnToMenu();
     }
 
