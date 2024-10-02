@@ -8,7 +8,6 @@ internal class GameWindow
 
     public static GameWindow Instance => _instance ??= new GameWindow();
 
-
     public void Run()
     {
         bool isExit = false;
