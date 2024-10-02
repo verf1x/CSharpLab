@@ -49,16 +49,19 @@ internal class Game
 
         double correctResult = Round(CalculateFormula(a, b), 2);
 
-        int answersCount = 0;
-
-        while (answersCount < 3)
+        if(!double.IsNaN(correctResult))
         {
-            answersCount = CheckAnswer(correctResult, answersCount);
-        }
+            int answersCount = 0;
 
-        if (answersCount == 3)
-        {
-            PrintGameResultMessage("Вы проиграли(( Тильт((");
+            while (answersCount < 3)
+            {
+                answersCount = CheckAnswer(correctResult, answersCount);
+            }
+
+            if (answersCount == 3)
+            {
+                PrintGameResultMessage("Вы проиграли(( Тильт((");
+            }
         }
     }
 

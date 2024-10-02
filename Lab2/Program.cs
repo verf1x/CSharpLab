@@ -1,5 +1,4 @@
 ﻿global using static System.Console;
-using System.Globalization;
 using System.Text;
 
 namespace Lab2;
