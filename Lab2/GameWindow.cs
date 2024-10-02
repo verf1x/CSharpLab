@@ -1,5 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using static System.Console;
+﻿using static System.Console;
 using static System.Math;
 
 namespace Lab2;
