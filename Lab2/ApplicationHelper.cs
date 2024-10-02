@@ -1,16 +1,14 @@
-﻿using static System.Console;
+﻿namespace Lab2;
 
-namespace Lab2;
-
-internal class GameHelper
+internal class ApplicationHelper
 {
     private const ConsoleColor _titleColor = ConsoleColor.Green;
     private readonly ConsoleColor _defaultColor;
-    private static GameHelper _instance;
+    private static ApplicationHelper _instance;
 
-    public static GameHelper Instance => _instance ??= new GameHelper(ForegroundColor);
+    public static ApplicationHelper Instance => _instance ??= new ApplicationHelper(ForegroundColor);
 
-    private GameHelper(ConsoleColor defaultColor)
+    private ApplicationHelper(ConsoleColor defaultColor)
     {
         _defaultColor = defaultColor;
     }
@@ -34,9 +32,10 @@ internal class GameHelper
         WriteLine("3. Выход\n");
     }
 
-    public void MoveToBlankPage()
+    public void LogError(string message)
     {
-        Clear();
-        PrintTitle();
+        ForegroundColor = ConsoleColor.Red;
+        WriteLine(message);
+        ForegroundColor = _defaultColor;
     }
 }

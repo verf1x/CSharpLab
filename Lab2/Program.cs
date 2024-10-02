@@ -1,4 +1,5 @@
-﻿using static System.Console;
+﻿global using static System.Console;
+using System.Globalization;
 using System.Text;
 
 namespace Lab2;
@@ -10,6 +11,8 @@ internal class Program
         InputEncoding = Encoding.UTF8;
         OutputEncoding = Encoding.UTF8;
 
-        GameWindow.Instance.Run();
+        Thread.CurrentThread.CurrentCulture = new("ru-RU");
+
+        Application.Instance.Run();
     }
 }
