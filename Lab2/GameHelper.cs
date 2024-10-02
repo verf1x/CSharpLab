@@ -10,7 +10,7 @@ internal class GameHelper
 
     public static GameHelper Instance => _instance ??= new GameHelper(ForegroundColor);
 
-    public GameHelper(ConsoleColor defaultColor)
+    private GameHelper(ConsoleColor defaultColor)
     {
         _defaultColor = defaultColor;
     }
