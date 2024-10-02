@@ -1,4 +1,6 @@
-﻿using static System.Console;
+﻿using System.Runtime.CompilerServices;
+using static System.Console;
+using static System.Math;
 
 namespace Lab2;
 
@@ -16,7 +18,7 @@ internal class GameWindow
 
         while (!isExit)
         {
-            Clear();
+            Console.Clear();
             GameHelper.Instance.PrintTitle();
             GameHelper.Instance.PrintMenu();
 
@@ -45,12 +47,93 @@ internal class GameWindow
 
     private void PlayGame()
     {
-        //TODO: Реализовать игру
-
         GameHelper.Instance.MoveToBlankPage();
-        WriteLine("Крутая математичсекая игра\n");
+        WriteLine("Угадака\n");
+
+        Write("Введите a: ");
+        double a = Convert.ToDouble(ReadLine());
+
+        Write("Введите b: ");
+        double b = Convert.ToDouble(ReadLine());
+
+        Write("\nУгадай ответ (дробь с 2 знаками после запятой, разделитель: точка): ");
+
+        double result = Round(CalculateFormula(a, b), 2);
+
+        CompareUserAnswerWithResult(result);
+    }
+
+    private void CompareUserAnswerWithResult(double result)
+    {
+        bool isCorrect = false;
+        int answersCount = 0;
+
+        while (!isCorrect && answersCount < 3)
+        {
+            double userAnswer = Round(Convert.ToDouble(ReadLine()), 2);
+            if (userAnswer == result)
+            {
+                isCorrect = true;
+            }
+            else
+            {
+                WriteLine("Неправильный ответ. Попробуйте снова.");
+                answersCount++;
+            }
+
+            CheckResult(isCorrect, answersCount);
+        }
+    }
+
+    private void CheckResult(bool isCorrect, int answersCount)
+    {
+        if (isCorrect)
+        {
+            PrintWinTitle();
+        }
+        else if (answersCount == 3)
+        {
+            Console.Clear();
+            GameHelper.Instance.PrintTitle();
+            WriteLine("Вы проиграли((");
+            ReturnToMenu();
+        }
+    }
+
+    private void PrintWinTitle()
+    {
+        for (int i = 5; i > 0; i--)
+        {
+            Console.Clear();
+            GameHelper.Instance.PrintTitle();
+            WriteLine($"Вы выиграли! Можно вернуться в меню через {i} секунд...");
+            Thread.Sleep(1000);
+        }
 
         ReturnToMenu();
+    }
+
+    private double CalculateFormula(double a, double b) //a = 2, b = 4 ~ 7.82
+    {
+        double numerator = Pow(Cos(PI), 7) + Sqrt(Log(Pow(b, 4)));
+        double denumerator = Sin(PI / 2 + a) * Sin(PI / 2 + a);
+
+        try
+        {
+            return numerator / denumerator;
+        }
+        catch (ArithmeticException ex)
+        {
+            ConsoleColor defaultColor = ForegroundColor;
+
+            ForegroundColor = ConsoleColor.Red;
+
+            WriteLine(ex.Message);
+
+            ForegroundColor = defaultColor;
+
+            return double.NaN;
+        }
     }
 
     private void ReturnToMenu()
