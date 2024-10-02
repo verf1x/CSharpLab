@@ -60,7 +60,7 @@ internal class Game
 
             if (answersCount == 3)
             {
-                PrintGameResultMessage("Вы проиграли(( Тильт((");
+                PrintGameResultMessage("Вы не угадали(( Тильт((");
             }
         }
     }
