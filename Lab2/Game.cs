@@ -55,7 +55,7 @@ internal class Game
 
             while (answersCount < 3)
             {
-                answersCount = CheckAnswer(correctResult, answersCount);
+                answersCount = UpdateAnswersCount(correctResult, answersCount);
             }
 
             if (answersCount == 3)
@@ -65,7 +65,7 @@ internal class Game
         }
     }
 
-    private int CheckAnswer(double correctResult, int answersCount)
+    private int UpdateAnswersCount(double correctResult, int answersCount)
     {
         if (double.TryParse(ReadLine(), out double userAnswer))
         {
