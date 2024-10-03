@@ -19,21 +19,15 @@ internal class Application
 
             if (int.TryParse(ReadLine(), out int choice))
             {
-                switch (choice)
+                Action menuAction = choice switch
                 {
-                    case 1:
-                        PlayGame();
-                        break;
-                    case 2:
-                        PrintAuthor();
-                        break;
-                    case 3:
-                        isExit = ConfirmExit();
-                        break;
-                    default:
-                        WriteLine("Неверный выбор. Попробуйте снова.");
-                        break;
-                }
+                    1 => PlayGame,
+                    2 => PrintAuthor,
+                    3 => () => isExit = ConfirmExit(),
+                    _ => () => WriteLine("Неверный выбор. Попробуйте снова."),
+                };
+
+                menuAction?.Invoke();
             }
         }
 
