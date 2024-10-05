@@ -21,13 +21,13 @@ internal class Game
 
         while (!isCorrectUserInput)
         {
-            Write("Введите a: ");
+            Write("Введите a ≠ 𝞹/2 + 𝞹k, k ∊ ℤ: "); //invalid input example: 1.5707963267948966
             bool isCorrectA = double.TryParse(ReadLine(), out double inputA);
 
-            Write("Введите b: ");
+            Write("Введите b != 0: ");
             bool isCorrectB = double.TryParse(ReadLine(), out double inputB);
 
-            if (isCorrectA && isCorrectB)
+            if (isCorrectA && isCorrectB && inputA % (1/2 * PI) != 0 && inputB != 0)
             {
                 isCorrectUserInput = true;
 
@@ -36,7 +36,7 @@ internal class Game
             }
             else
             {
-                WriteLine("Неправильный ввод. Попробуйте снова.");
+                WriteLine("Неправильный ввод. Возможно, вы использовали некорректный разделитель. Попробуйте снова.");
             }
         }
 
@@ -45,7 +45,7 @@ internal class Game
 
     public void GuessCorrectResult(double a, double b)
     {
-        Write("\nУгадай ответ (дробь с 2 знаками после запятой): ");
+        Write("\nУгадай ответ (дробь с 2 знаками после запятой, разделитель запятая): ");
 
         double correctResult = Round(CalculateFormula(a, b), 2);
 
@@ -91,11 +91,11 @@ internal class Game
 
     private double CalculateFormula(double a, double b) //a = 2, b = 4 ~ 7.82
     {
-        double numerator = Pow(Cos(PI), 7) + Sqrt(Log(Pow(b, 4)));
-        double denumerator = Sin(PI / 2 + a) * Sin(PI / 2 + a);
-
         try
         {
+            double numerator = Pow(Cos(PI), 7) + Sqrt(Log(Pow(b, 4)));
+            double denumerator = Pow(Sin(PI / 2 + a), 2);
+
             return numerator / denumerator;
         }
         catch (ArithmeticException ex)
