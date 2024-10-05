@@ -35,7 +35,9 @@ internal class ApplicationHelper
     public void LogError(string message)
     {
         ForegroundColor = ConsoleColor.Red;
-        WriteLine(message);
+        WriteLine(message + "\n");
         ForegroundColor = _defaultColor;
+
+        Thread.Sleep(1000);
     }
 }

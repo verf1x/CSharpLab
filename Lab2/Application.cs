@@ -24,7 +24,7 @@ internal class Application
                     1 => PlayGame,
                     2 => PrintAuthor,
                     3 => () => isExit = ConfirmExit(),
-                    _ => () => WriteLine("Неверный выбор. Попробуйте снова."),
+                    _ => () => ApplicationHelper.Instance.LogError("Неверный выбор. Попробуйте снова."),
                 };
 
                 menuAction?.Invoke();
@@ -48,8 +48,8 @@ internal class Application
 
     private void ReturnToMenu()
     {
-        WriteLine("Возвращение в меню...");
-        Thread.Sleep(2000);
+        WriteLine("\nВозвращение в меню...");
+        Thread.Sleep(1000);
     }
 
     private void PrintAuthor()
@@ -73,7 +73,7 @@ internal class Application
         {
             MoveToBlankPage();
 
-            WriteLine("Ошибка ввода. Введите 'д' или 'н'.");
+            ApplicationHelper.Instance.LogError("Ошибка ввода. Введите 'д' или 'н'.");
             Write("Вы уверены, что хотите выйти? (д/н): ");
             input = ReadLine().ToLower();
         }

@@ -27,7 +27,7 @@ internal class Game
             Write("Введите b != 0: ");
             bool isCorrectB = double.TryParse(ReadLine(), out double inputB);
 
-            if (isCorrectA && isCorrectB && inputA % (1/2 * PI) != 0 && inputB != 0)
+            if (isCorrectA && isCorrectB && inputA % (1 / 2 * PI) != 0 && inputB != 0)
             {
                 isCorrectUserInput = true;
 
@@ -36,7 +36,8 @@ internal class Game
             }
             else
             {
-                WriteLine("Неправильный ввод. Возможно, вы использовали некорректный разделитель. Попробуйте снова.");
+                ApplicationHelper.Instance.LogError(
+                    "Неправильный ввод. Возможно, вы использовали некорректный разделитель. Попробуйте снова.");
             }
         }
 
@@ -49,7 +50,7 @@ internal class Game
 
         double correctResult = Round(CalculateFormula(a, b), 2);
 
-        if(!double.IsNaN(correctResult))
+        if (!double.IsNaN(correctResult))
         {
             int answersCount = 0;
 
@@ -65,7 +66,7 @@ internal class Game
         }
         else
         {
-            WriteLine("Неправильный ввод. Возможно, вы использовали некорректный разделитель. Попробуйте снова.");
+            ApplicationHelper.Instance.LogError("Неправильный ввод. Возможно, вы использовали некорректный разделитель. Попробуйте снова.");
         }
     }
 
@@ -86,7 +87,7 @@ internal class Game
         }
         else
         {
-            WriteLine("Неправильный ввод. Попробуйте снова.");
+            ApplicationHelper.Instance.LogError("Неправильный ввод. Попробуйте снова.");
             answersCount++;
         }
 
@@ -95,19 +96,10 @@ internal class Game
 
     private double CalculateFormula(double a, double b) //a = 2, b = 4 ~ 7,82
     {
-        try
-        {
-            double numerator = Pow(Cos(PI), 7) + Sqrt(Log(Pow(b, 4)));
-            double denumerator = Pow(Sin(PI / 2 + a), 2);
+        double numerator = Pow(Cos(PI), 7) + Sqrt(Log(Pow(b, 4)));
+        double denumerator = Pow(Sin(PI / 2 + a), 2);
 
-            return numerator / denumerator;
-        }
-        catch (ArithmeticException ex)
-        {
-            ApplicationHelper.Instance.LogError(ex.Message);
-
-            return double.NaN;
-        }
+        return numerator / denumerator;
     }
 
     private void PrintGameResultMessage(string resultMessage)
