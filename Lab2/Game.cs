@@ -63,6 +63,10 @@ internal class Game
                 PrintGameResultMessage("Вы не угадали(( Тильт((");
             }
         }
+        else
+        {
+            WriteLine("Неправильный ввод. Возможно, вы использовали некорректный разделитель. Попробуйте снова.");
+        }
     }
 
     private int UpdateAnswersCount(double correctResult, int answersCount)
@@ -89,7 +93,7 @@ internal class Game
         return answersCount;
     }
 
-    private double CalculateFormula(double a, double b) //a = 2, b = 4 ~ 7.82
+    private double CalculateFormula(double a, double b) //a = 2, b = 4 ~ 7,82
     {
         try
         {
