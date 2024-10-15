@@ -1,7 +1,5 @@
 ﻿namespace Lab2;
 
-using System.Diagnostics;
-
 internal static class ArrayTools
 {
     public static T[] CreateArray<T>(int length)
@@ -18,8 +16,6 @@ internal static class ArrayTools
             array[i] = random.Next(-10000, 10000);
         }
     }
-
-
 
     public static bool TryGetArray(out int[] array)
     {
