@@ -31,7 +31,7 @@ internal class ApplicationHelper
         WriteLine(message + "\n");
         ForegroundColor = _defaultColor;
 
-        Thread.Sleep(1000);
+        Thread.Sleep(500);
     }
 
     public void LogIncorrectInput()

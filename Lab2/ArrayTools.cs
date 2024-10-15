@@ -40,8 +40,8 @@ internal static class ArrayTools
 
     public static void SetupSortingBenchmark(int[] array)
     {
-        PrintArrayAndSort(array, Sorter.GetBubbleSortTookedTicks, "Сортировка пузырьком заняла {0} тиков");
-        PrintArrayAndSort(array, Sorter.GetIntersectionSortTookedTicks, "Сортировка вставками заняла {0} тиков");
+        PrintArrayAndSort(array, BenchmarkSorter.GetBubbleSortTookedTicks, "Сортировка пузырьком заняла {0} тиков");
+        PrintArrayAndSort(array, BenchmarkSorter.GetIntersectionSortTookedTicks, "Сортировка вставками заняла {0} тиков");
 
         WriteLine("Нажмите любую клавишу для возврата в меню...");
         ReadKey();
@@ -66,7 +66,7 @@ internal static class ArrayTools
     {
         if(array.Length > 10)
         {
-            WriteLine("Массив не может быть выведен на экран, так как его длина больше 10.");
+            WriteLine("Массив не может быть выведен на экран, так как его длина больше 10");
         }
         else
         {

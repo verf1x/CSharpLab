@@ -2,7 +2,7 @@
 
 using System.Diagnostics;
 
-internal static class Sorter
+internal static class BenchmarkSorter
 {
     private static readonly Stopwatch _stopwatch = new();
 

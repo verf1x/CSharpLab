@@ -24,7 +24,7 @@ internal class Game
             Write("Введите a ≠ 𝞹/2 + 𝞹k, k ∊ ℤ: "); //invalid input example: 1.5707963267948966
             bool isCorrectA = double.TryParse(ReadLine(), out double inputA);
 
-            Write("Введите b != 0: ");
+            Write("Введите b ≠ 0: ");
             bool isCorrectB = double.TryParse(ReadLine(), out double inputB);
 
             if (isCorrectA && isCorrectB && inputA % (1 / 2 * PI) != 0 && inputB != 0)

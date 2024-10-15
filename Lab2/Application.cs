@@ -19,7 +19,7 @@ internal class Application
     {
         _menu.Add(1, (GuessAnswer, "Отгадай ответ"));
         _menu.Add(2, (PrintAuthor, "Об авторе"));
-        _menu.Add(3, (SortArrayWithBenchmarks, "Сортировка массива"));
+        _menu.Add(3, (SortArray, "Сортировка массива"));
         _menu.Add(4, (() => _isExit = ConfirmExit(), "Выход\n"));
     }
 
@@ -64,7 +64,7 @@ internal class Application
         ReturnToMenu();
     }
 
-    private void SortArrayWithBenchmarks()
+    private void SortArray()
     {
         bool isCorrectInput = false;
 
