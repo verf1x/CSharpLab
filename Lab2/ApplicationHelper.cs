@@ -13,6 +13,7 @@ internal class ApplicationHelper
         _defaultColor = defaultColor;
     }
 
+
     public void PrintTitle()
     {
         ForegroundColor = _titleColor;
@@ -24,14 +25,6 @@ internal class ApplicationHelper
         ForegroundColor = _defaultColor;
     }
 
-    public void PrintMenu()
-    {
-        WriteLine("Меню\n");
-        WriteLine("1. Отгадай ответ");
-        WriteLine("2. Об авторе");
-        WriteLine("3. Выход\n");
-    }
-
     public void LogError(string message)
     {
         ForegroundColor = ConsoleColor.Red;
@@ -40,4 +33,10 @@ internal class ApplicationHelper
 
         Thread.Sleep(1000);
     }
+
+    public void LogIncorrectInput()
+        => LogError("Неправильный ввод. Возможно, вы использовали некорректный разделитель. Попробуйте снова.");
+
+    public void LogIvalidInput() 
+        => LogError("Неправильный ввод. Попробуйте снова.");
 }

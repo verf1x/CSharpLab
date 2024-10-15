@@ -36,8 +36,7 @@ internal class Game
             }
             else
             {
-                ApplicationHelper.Instance.LogError(
-                    "Неправильный ввод. Возможно, вы использовали некорректный разделитель. Попробуйте снова.");
+                ApplicationHelper.Instance.LogIncorrectInput();
             }
         }
 
@@ -66,7 +65,7 @@ internal class Game
         }
         else
         {
-            ApplicationHelper.Instance.LogError("Неправильный ввод. Возможно, вы использовали некорректный разделитель. Попробуйте снова.");
+            ApplicationHelper.Instance.LogIncorrectInput();
         }
     }
 
@@ -87,7 +86,7 @@ internal class Game
         }
         else
         {
-            ApplicationHelper.Instance.LogError("Неправильный ввод. Попробуйте снова.");
+            ApplicationHelper.Instance.LogIvalidInput();
             answersCount++;
         }
 
