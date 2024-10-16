@@ -1,6 +1,6 @@
-﻿namespace Lab2;
+﻿using System.Collections.Generic;
 
-using System.Collections.Generic;
+namespace Lab2;
 
 internal class Application
 {
@@ -36,7 +36,7 @@ internal class Application
                 if (_menu.ContainsKey(choice))
                     _menu[choice].action?.Invoke();
                 else
-                    ApplicationHelper.Instance.LogIvalidInput();
+                    ApplicationHelper.Instance.LogInvalidInput();
             }
         }
     }

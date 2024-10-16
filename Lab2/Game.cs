@@ -86,7 +86,7 @@ internal class Game
         }
         else
         {
-            ApplicationHelper.Instance.LogIvalidInput();
+            ApplicationHelper.Instance.LogInvalidInput();
             answersCount++;
         }
 

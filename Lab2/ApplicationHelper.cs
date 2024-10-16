@@ -37,6 +37,6 @@ internal class ApplicationHelper
     public void LogIncorrectInput()
         => LogError("Неправильный ввод. Возможно, вы использовали некорректный разделитель. Попробуйте снова.");
 
-    public void LogIvalidInput() 
+    public void LogInvalidInput() 
         => LogError("Неправильный ввод. Попробуйте снова.");
 }

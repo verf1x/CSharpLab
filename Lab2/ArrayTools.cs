@@ -31,7 +31,7 @@ internal static class ArrayTools
         }
         else
         {
-            ApplicationHelper.Instance.LogIvalidInput();
+            ApplicationHelper.Instance.LogInvalidInput();
             array = Array.Empty<int>();
 
             return false;
@@ -40,20 +40,20 @@ internal static class ArrayTools
 
     public static void SetupSortingBenchmark(int[] array)
     {
-        PrintArrayAndSort(array, BenchmarkSorter.GetBubbleSortTookedTicks, "Сортировка пузырьком заняла {0} тиков");
-        PrintArrayAndSort(array, BenchmarkSorter.GetIntersectionSortTookedTicks, "Сортировка вставками заняла {0} тиков");
+        PrintArrayAndSort(array, BenchmarkSorter.GetBubbleSortTookedTicks, "Сортировка пузырьком заняла {0} ns");
+        PrintArrayAndSort(array, BenchmarkSorter.GetIntersectionSortTookedTicks, "Сортировка вставками заняла {0} ns");
 
         WriteLine("Нажмите любую клавишу для возврата в меню...");
         ReadKey();
     }
 
-    public static void PrintArrayAndSort(int[] array, Func<int[], long> sortFunc, string message)
+    public static void PrintArrayAndSort(int[] array, Func<int[], double> sortFunc, string message)
     {
         int[] arrayToSort = new int[array.Length];
         Array.Copy(array, arrayToSort, arrayToSort.Length);
 
         PrintArray(arrayToSort, "Исходный массив");
-        long elapsedTicks = sortFunc(arrayToSort);
+        double elapsedTicks = sortFunc(arrayToSort);
 
         WriteLine(string.Format(message, elapsedTicks));
 
@@ -66,7 +66,7 @@ internal static class ArrayTools
     {
         if(array.Length > 10)
         {
-            WriteLine("Массив не может быть выведен на экран, так как его длина больше 10");
+            WriteLine("НЕЕЕЕЕЕЕЕЕЕ!!!!لا أستطيع إخراج أكثر من 10 عناصر ПОТОМУ ЧТО МЕНЯ УЩЕМИЛО ТЗ(((((");
         }
         else
         {

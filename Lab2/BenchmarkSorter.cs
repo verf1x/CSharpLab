@@ -1,12 +1,12 @@
-﻿namespace Lab2;
+﻿using System.Diagnostics;
 
-using System.Diagnostics;
+namespace Lab2;
 
 internal static class BenchmarkSorter
 {
     private static readonly Stopwatch _stopwatch = new();
 
-    public static long GetBubbleSortTookedTicks(int[] array)
+    public static double GetBubbleSortTookedTicks(int[] array)
     {
         _stopwatch.Start();
 
@@ -25,10 +25,10 @@ internal static class BenchmarkSorter
 
         _stopwatch.Stop();
 
-        return _stopwatch.ElapsedTicks;
+        return _stopwatch.Elapsed.TotalNanoseconds;
     }
 
-    public static long GetIntersectionSortTookedTicks(int[] array)
+    public static double GetIntersectionSortTookedTicks(int[] array)
     {
         _stopwatch.Start();
 
@@ -47,6 +47,6 @@ internal static class BenchmarkSorter
 
         _stopwatch.Stop();
 
-        return _stopwatch.ElapsedTicks;
+        return _stopwatch.Elapsed.TotalNanoseconds;
     }
 }
