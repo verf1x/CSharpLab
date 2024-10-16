@@ -14,25 +14,26 @@ internal class Game
     {
         WriteLine("Угадака\n");
 
-        double a = 0.0d;
-        double b = 0.0d;
+        double a = GetValidInput("Введите a ≠ π/2 + k, k ∊ ℤ: ", input => input % (1 / 2 * PI) != 0);
+        double b = GetValidInput("Введите b ≠ 0: ", input => input != 0);
 
-        bool isCorrectUserInput = false;
+        GuessCorrectResult(a, b);
+    }
 
-        while (!isCorrectUserInput)
+    private double GetValidInput(string prompt, Func<double, bool> validate)
+    {
+        double value = 0.0d;
+        bool isValidInput = false;
+
+        while (!isValidInput)
         {
-            Write("Введите a ≠ 𝞹/2 + 𝞹k, k ∊ ℤ: "); //invalid input example: 1.5707963267948966
-            bool isCorrectA = double.TryParse(ReadLine(), out double inputA);
+            Write(prompt);
+            bool isParsed = double.TryParse(ReadLine(), out double input);
 
-            Write("Введите b ≠ 0: ");
-            bool isCorrectB = double.TryParse(ReadLine(), out double inputB);
-
-            if (isCorrectA && isCorrectB && inputA % (1 / 2 * PI) != 0 && inputB != 0)
+            if (isParsed && validate(input))
             {
-                isCorrectUserInput = true;
-
-                a = inputA;
-                b = inputB;
+                isValidInput = true;
+                value = input;
             }
             else
             {
@@ -40,7 +41,7 @@ internal class Game
             }
         }
 
-        GuessCorrectResult(a, b);
+        return value;
     }
 
     public void GuessCorrectResult(double a, double b)
@@ -68,6 +69,7 @@ internal class Game
             ApplicationHelper.Instance.LogIncorrectInput();
         }
     }
+
 
     private int UpdateAnswersCount(double correctResult, int answersCount)
     {

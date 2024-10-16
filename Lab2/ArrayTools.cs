@@ -17,7 +17,7 @@ internal static class ArrayTools
         }
     }
 
-    public static bool TryGetArray(out int[] array)
+    public static int[] GetArray()
     {
         Application.Instance.MoveToBlankPage();
 
@@ -25,23 +25,19 @@ internal static class ArrayTools
 
         if (int.TryParse(ReadLine(), out int length) && length > 0)
         {
-            array = CreateArray<int>(length);
-
-            return true;
+            return CreateArray<int>(length);
         }
         else
         {
             ApplicationHelper.Instance.LogInvalidInput();
-            array = Array.Empty<int>();
-
-            return false;
+            return Array.Empty<int>();
         }
     }
 
     public static void SetupSortingBenchmark(int[] array)
     {
-        PrintArrayAndSort(array, BenchmarkSorter.GetBubbleSortTookedTicks, "Сортировка пузырьком заняла {0} ns");
-        PrintArrayAndSort(array, BenchmarkSorter.GetIntersectionSortTookedTicks, "Сортировка вставками заняла {0} ns");
+        PrintArrayAndSort(array, BenchmarkedSorter.GetBubbleSortTookedNs, "Сортировка пузырьком заняла {0} ns");
+        PrintArrayAndSort(array, BenchmarkedSorter.GetIntersectionSortTookedNs, "Сортировка вставками заняла {0} ns");
 
         WriteLine("Нажмите любую клавишу для возврата в меню...");
         ReadKey();

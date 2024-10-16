@@ -2,11 +2,11 @@
 
 namespace Lab2;
 
-internal static class BenchmarkSorter
+internal static class BenchmarkedSorter
 {
     private static readonly Stopwatch _stopwatch = new();
 
-    public static double GetBubbleSortTookedTicks(int[] array)
+    public static double GetBubbleSortTookedNs(int[] array)
     {
         _stopwatch.Start();
 
@@ -28,7 +28,7 @@ internal static class BenchmarkSorter
         return _stopwatch.Elapsed.TotalNanoseconds;
     }
 
-    public static double GetIntersectionSortTookedTicks(int[] array)
+    public static double GetIntersectionSortTookedNs(int[] array)
     {
         _stopwatch.Start();
 

@@ -13,7 +13,6 @@ internal class ApplicationHelper
         _defaultColor = defaultColor;
     }
 
-
     public void PrintTitle()
     {
         ForegroundColor = _titleColor;

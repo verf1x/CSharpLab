@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Lab2;
+﻿namespace Lab2;
 
 internal class Application
 {
@@ -70,12 +68,14 @@ internal class Application
 
         while (!isCorrectInput)
         {
-            if(ArrayTools.TryGetArray(out int[] array))
+            int[] arrayToSort = ArrayTools.GetArray();
+
+            if (arrayToSort.Length > 0)
             {
                 isCorrectInput = true;
 
-                ArrayTools.FillNumbersArray(array);
-                ArrayTools.SetupSortingBenchmark(array);
+                ArrayTools.FillNumbersArray(arrayToSort);
+                ArrayTools.SetupSortingBenchmark(arrayToSort);
             }
         }
     }
