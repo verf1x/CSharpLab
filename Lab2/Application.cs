@@ -3,7 +3,7 @@
 internal class Application
 {
     private static Application _instance;
-    private Dictionary<int, (Action action, string name)> _menu = [];
+    private readonly Dictionary<int, (Action action, string name)> _menu = [];
     private bool _isExit = false;
 
     public static Application Instance => _instance ??= new();
@@ -15,7 +15,6 @@ internal class Application
 
     private void InitializeMenu()
     {
-        _menu.Add(1, (GuessAnswer, "Отгадай ответ"));
         _menu.Add(2, (PrintAuthor, "Об авторе"));
         _menu.Add(3, (SortArray, "Сортировка массива"));
         _menu.Add(4, (() => _isExit = ConfirmExit(), "Выход\n"));
@@ -27,7 +26,7 @@ internal class Application
 
         while (!isExit)
         {
-            DrawMenu();
+            ShowMenu();
 
             if (int.TryParse(ReadLine(), out int choice))
             {
@@ -39,7 +38,7 @@ internal class Application
         }
     }
 
-    public void DrawMenu()
+    public void ShowMenu()
     {
         MoveToBlankPage();
 
@@ -59,7 +58,7 @@ internal class Application
         WriteLine("Автор\tКупцов Никита Александрович\tГруппа\t6102-090301D\n");
         WriteLine("Нажмите любую клавишу для возврата в меню...");
         ReadKey();
-        ReturnToMenu();
+        ReturnToMenuWithDelay();
     }
 
     private void SortArray()
@@ -83,21 +82,33 @@ internal class Application
     private bool ConfirmExit()
     {
         MoveToBlankPage();
-
-        WriteLine("Вы уверены, что хотите выйти? (д/н): ");
-
-        string input = ReadLine().ToLower();
-
-        while (input != "д" && input != "н")
+        bool exit = false;
+        bool isConfirmed = false;
+    
+        do
         {
-            MoveToBlankPage();
+            WriteLine("Вы уверены, что хотите выйти? (д/н): ");
+        
+            string answer = ReadLine()?.ToLower();
 
-            ApplicationHelper.Instance.LogError("Ошибка ввода. Введите 'д' или 'н'.");
-            Write("Вы уверены, что хотите выйти? (д/н): ");
-            input = ReadLine().ToLower();
-        }
-
-        return input == "д";
+            if (answer is "д")
+            {
+                exit = true;
+                isConfirmed = true;
+            }
+            else if (answer is "н")
+            {
+                exit = false;
+                isConfirmed = true;
+            }
+            else
+            {
+                MoveToBlankPage();
+                ApplicationHelper.Instance.LogError("Ошибка ввода. Введите 'д' или 'н'.");
+            }
+        } while (!isConfirmed);
+        
+        return exit;
     }
 
     public void MoveToBlankPage()
@@ -106,9 +117,15 @@ internal class Application
         ApplicationHelper.Instance.PrintTitle();
     }
 
-    private void ReturnToMenu()
+    private void ReturnToMenuWithDelay()
     {
         WriteLine("\nВозвращение в меню...");
-        Thread.Sleep(800);
+        Thread.Sleep(1000);
+    }
+    
+    private void ReturnToMenuByPressingKey()
+    {
+        WriteLine("Нажмите любую клавишу, чтобы вернуться в меню...");
+        ReadKey();
     }
 }

@@ -5,7 +5,6 @@ namespace Lab2;
 internal class Game
 {
     private static Game _instance;
-
     public static Game Instance => _instance ??= new Game();
 
     private Game() { }
@@ -14,34 +13,12 @@ internal class Game
     {
         WriteLine("Угадака\n");
 
-        double a = GetValidInput("Введите a ≠ π/2 + k, k ∊ ℤ: ", input => input % (1 / 2 * PI) != 0);
-        double b = GetValidInput("Введите b ≠ 0: ", input => input != 0);
+        double a = InputHandler.GetInput<double>("Введите a ≠ π/2 + k, k ∊ ℤ: ",
+            input => input % (PI / 2) != 0);
+        double b = InputHandler.GetInput<double>("Введите b ≠ 0: ",
+            input => input != 0);
 
         GuessCorrectResult(a, b);
-    }
-
-    private double GetValidInput(string prompt, Func<double, bool> validate)
-    {
-        double value = 0.0d;
-        bool isValidInput = false;
-
-        while (!isValidInput)
-        {
-            Write(prompt);
-            bool isParsed = double.TryParse(ReadLine(), out double input);
-
-            if (isParsed && validate(input))
-            {
-                isValidInput = true;
-                value = input;
-            }
-            else
-            {
-                ApplicationHelper.Instance.LogIncorrectInput();
-            }
-        }
-
-        return value;
     }
 
     public void GuessCorrectResult(double a, double b)

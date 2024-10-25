@@ -2,33 +2,31 @@
 
 internal class ApplicationHelper
 {
-    private const ConsoleColor _titleColor = ConsoleColor.Green;
-    private readonly ConsoleColor _defaultColor;
+    public ConsoleColor TitleColor => ConsoleColor.Green;
+    public ConsoleColor DefaultColor => ConsoleColor.Gray;
+    
     private static ApplicationHelper _instance;
 
-    public static ApplicationHelper Instance => _instance ??= new ApplicationHelper(ForegroundColor);
+    public static ApplicationHelper Instance => _instance ??= new();
 
-    private ApplicationHelper(ConsoleColor defaultColor)
-    {
-        _defaultColor = defaultColor;
-    }
+    private ApplicationHelper() { }
 
     public void PrintTitle()
     {
-        ForegroundColor = _titleColor;
+        ForegroundColor = TitleColor;
 
         WriteLine("//------------------------//");
         WriteLine("// Супер крутая игра v1.1 //");
         WriteLine("//------------------------//\n");
 
-        ForegroundColor = _defaultColor;
+        ForegroundColor = DefaultColor;
     }
 
     public void LogError(string message)
     {
         ForegroundColor = ConsoleColor.Red;
         WriteLine(message + "\n");
-        ForegroundColor = _defaultColor;
+        ForegroundColor = DefaultColor;
 
         Thread.Sleep(500);
     }
