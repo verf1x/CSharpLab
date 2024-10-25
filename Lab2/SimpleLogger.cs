@@ -1,6 +1,6 @@
 ﻿namespace Lab2;
 
-public class SimpleLogger : ILogger
+internal class SimpleLogger
 {
     private static SimpleLogger _instance;
     public static SimpleLogger Instance => _instance ??= new SimpleLogger();
@@ -25,6 +25,6 @@ public class SimpleLogger : ILogger
         ForegroundColor = ApplicationHelper.Instance.DefaultColor;
     }
 
-    public void LogIncorrectInput(string message)
-        => LogError("Неправильный ввод. Попробуйте снова.");
+    public void LogIncorrectInput(string message = "Неправильный ввод. Попробуйте снова.")
+        => LogError(message);
 }

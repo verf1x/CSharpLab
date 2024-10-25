@@ -1,13 +1,13 @@
-﻿using static System.Math;
+﻿namespace Lab2;
 
-namespace Lab2;
+using static System.Math;
 
-internal class Game
+internal class MathGame
 {
-    private static Game _instance;
-    public static Game Instance => _instance ??= new Game();
+    private static MathGame _instance;
+    public static MathGame Instance => _instance ??= new MathGame();
 
-    private Game() { }
+    private MathGame() { }
 
     public void Start()
     {
@@ -43,7 +43,7 @@ internal class Game
         }
         else
         {
-            ApplicationHelper.Instance.LogIncorrectInput();
+            SimpleLogger.Instance.LogIncorrectInput();
         }
     }
 
@@ -65,7 +65,7 @@ internal class Game
         }
         else
         {
-            ApplicationHelper.Instance.LogInvalidInput();
+            SimpleLogger.Instance.LogIncorrectInput();
             answersCount++;
         }
 

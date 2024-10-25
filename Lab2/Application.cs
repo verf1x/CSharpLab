@@ -3,85 +3,34 @@
 internal class Application
 {
     private static Application _instance;
-    private readonly Dictionary<int, (Action action, string name)> _menu = [];
+    private readonly Menu _menu;
     private bool _isExit = false;
 
     public static Application Instance => _instance ??= new();
 
     private Application()
     {
-        InitializeMenu();
-    }
-
-    private void InitializeMenu()
-    {
-        _menu.Add(2, (PrintAuthor, "Об авторе"));
-        _menu.Add(3, (SortArray, "Сортировка массива"));
-        _menu.Add(4, (() => _isExit = ConfirmExit(), "Выход\n"));
+        _menu = new Menu();
     }
 
     public void Run()
     {
-        bool isExit = false;
-
-        while (!isExit)
+        while (!_isExit)
         {
-            ShowMenu();
-
-            if (int.TryParse(ReadLine(), out int choice))
-            {
-                if (_menu.ContainsKey(choice))
-                    _menu[choice].action?.Invoke();
-                else
-                    ApplicationHelper.Instance.LogInvalidInput();
-            }
+            _menu.ShowMenu();
+            _menu.HandleUserChoice();
         }
     }
 
-    public void ShowMenu()
+    public void Exit()
     {
-        MoveToBlankPage();
-
-        foreach (var item in _menu)
-            WriteLine($"{item.Key}. {item.Value.name}");
-    }
-
-    private void GuessAnswer()
-    {
-        MoveToBlankPage();
-        Game.Instance.Start();
-    }
-
-    private void PrintAuthor()
-    {
-        MoveToBlankPage();
-        WriteLine("Автор\tКупцов Никита Александрович\tГруппа\t6102-090301D\n");
-        WriteLine("Нажмите любую клавишу для возврата в меню...");
-        ReadKey();
-        ReturnToMenuWithDelay();
-    }
-
-    private void SortArray()
-    {
-        bool isCorrectInput = false;
-
-        while (!isCorrectInput)
-        {
-            int[] arrayToSort = ArrayTools.GetArray();
-
-            if (arrayToSort.Length > 0)
-            {
-                isCorrectInput = true;
-
-                ArrayTools.FillNumbersArray(arrayToSort);
-                ArrayTools.SetupSortingBenchmark(arrayToSort);
-            }
-        }
+        _isExit = ConfirmExit();
     }
 
     private bool ConfirmExit()
     {
         MoveToBlankPage();
+        
         bool exit = false;
         bool isConfirmed = false;
     
@@ -104,7 +53,7 @@ internal class Application
             else
             {
                 MoveToBlankPage();
-                ApplicationHelper.Instance.LogError("Ошибка ввода. Введите 'д' или 'н'.");
+                SimpleLogger.Instance.LogIncorrectInput("Ошибка ввода. Введите 'д' или 'н'.");
             }
         } while (!isConfirmed);
         
@@ -117,13 +66,13 @@ internal class Application
         ApplicationHelper.Instance.PrintTitle();
     }
 
-    private void ReturnToMenuWithDelay()
+    public void ReturnToMenuWithDelay()
     {
         WriteLine("\nВозвращение в меню...");
         Thread.Sleep(1000);
     }
     
-    private void ReturnToMenuByPressingKey()
+    public void ReturnToMenuByPressingKey()
     {
         WriteLine("Нажмите любую клавишу, чтобы вернуться в меню...");
         ReadKey();

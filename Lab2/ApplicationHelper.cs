@@ -21,19 +21,4 @@ internal class ApplicationHelper
 
         ForegroundColor = DefaultColor;
     }
-
-    public void LogError(string message)
-    {
-        ForegroundColor = ConsoleColor.Red;
-        WriteLine(message + "\n");
-        ForegroundColor = DefaultColor;
-
-        Thread.Sleep(500);
-    }
-
-    public void LogIncorrectInput()
-        => LogError("Неправильный ввод. Возможно, вы использовали некорректный разделитель. Попробуйте снова.");
-
-    public void LogInvalidInput() 
-        => LogError("Неправильный ввод. Попробуйте снова.");
 }
