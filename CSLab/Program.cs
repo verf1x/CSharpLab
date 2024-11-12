@@ -27,7 +27,6 @@ file class Program
         services.AddSingleton<Application>();
         services.AddSingleton<ILogger, SimpleLogger>();
         services.AddSingleton<Menu>();
-        services.AddSingleton<MathGame>();
         services.AddSingleton(typeof(SortsBenchmark<>));
         services.AddSingleton<Tetris>();
         services.AddSingleton<Piece>();

@@ -10,7 +10,6 @@ internal class Application
 {
     private readonly Menu _menu;
     private readonly ILogger _logger;
-    private readonly MathGame _mathGame;
     private readonly SortsBenchmark<int> _sortsBenchmark;
     private readonly Tetris _tetris;
     private bool _isRunning;
@@ -19,7 +18,6 @@ internal class Application
     {
         _menu = serviceProvider.GetRequiredService<Menu>();
         _logger = serviceProvider.GetRequiredService<ILogger>();
-        _mathGame = serviceProvider.GetRequiredService<MathGame>();
         _sortsBenchmark = serviceProvider.GetRequiredService<SortsBenchmark<int>>();
         _tetris = serviceProvider.GetRequiredService<Tetris>();
     }
@@ -38,7 +36,7 @@ internal class Application
 
             Action menuAction = _menu.GetUserChoice() switch
             {
-                1 => _mathGame.Start,
+                1 => MathGame.Start,
                 2 => PrintAuthor,
                 3 => SortArray,
                 4 => _tetris.Run,

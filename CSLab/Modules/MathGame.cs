@@ -6,19 +6,12 @@ namespace CSLab.Modules;
 /// <summary>
 /// Math game class
 /// </summary>
-internal class MathGame
+internal static class MathGame
 {
-    private readonly ILogger _logger;
-
-    public MathGame( ILogger logger)
-    {
-        _logger = logger;
-    }
-
     /// <summary>
     /// Method to start the game
     /// </summary>
-    internal void Start()
+    internal static void Start()
     {
         WriteLine("Угадака\n");
 
@@ -30,7 +23,7 @@ internal class MathGame
         GuessCorrectResult(a, b);
     }
 
-    private void GuessCorrectResult(double a, double b)
+    private static void GuessCorrectResult(double a, double b)
     {
         Write("\nУгадай ответ (дробь с 2 знаками после запятой, разделитель запятая): ");
 
@@ -48,12 +41,12 @@ internal class MathGame
         }
         else
         {
-            _logger.LogIncorrectInput();
+            WriteLine("Невозможно вычислить значение формулы. Попробуйте другие значения.");
         }
     }
 
 
-    private int UpdateAnswersCount(double correctResult, int answersCount)
+    private static int UpdateAnswersCount(double correctResult, int answersCount)
     {
         if (double.TryParse(ReadLine(), out double userAnswer))
         {
@@ -70,14 +63,14 @@ internal class MathGame
         }
         else
         {
-           _logger.LogIncorrectInput();
+            Console.WriteLine("Некорректный ввод. Попробуйте снова.");
             answersCount++;
         }
 
         return answersCount;
     }
 
-    private double CalculateFormula(double a, double b) //a = 2, b = 4 ~ 7,82
+    private static double CalculateFormula(double a, double b) //a = 2, b = 4 ~ 7,82
     {
         double numerator = Pow(Cos(PI), 7) + Sqrt(Log(Pow(b, 4)));
         double denumerator = Pow(Sin(PI / 2 + a), 2);
@@ -85,7 +78,7 @@ internal class MathGame
         return numerator / denumerator;
     }
 
-    private void PrintGameResultMessage(string resultMessage)
+    private static void PrintGameResultMessage(string resultMessage)
     {
         for (int i = 5 ; i > 0 ; i--)
         {
