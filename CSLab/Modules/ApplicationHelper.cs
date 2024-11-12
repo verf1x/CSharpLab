@@ -1,10 +1,16 @@
 ﻿namespace CSLab.Modules;
 
-internal class ApplicationHelper
+/// <summary>
+/// Application helper class
+/// </summary>
+internal static class ApplicationHelper
 {
     internal static ConsoleColor DefaultColor => ConsoleColor.Gray;
 
-    internal void PrintTitle()
+    /// <summary>
+    /// Print logo of the game
+    /// </summary>
+    internal static void PrintTitle()
     {
         ForegroundColor = ConsoleColor.Green;
 

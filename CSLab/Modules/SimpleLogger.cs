@@ -2,6 +2,9 @@
 
 namespace CSLab.Modules;
 
+/// <summary>
+/// Simple implementation of ILogger
+/// </summary>
 internal class SimpleLogger : ILogger
 {
     void ILogger.LogInformation(string message)
@@ -23,5 +26,10 @@ internal class SimpleLogger : ILogger
     }
 
     void ILogger.LogIncorrectInput(string message)
-        => ((ILogger)this).LogError(message);
+    {
+        if (message is null)
+            WriteLine("Некорректный ввод\n");
+        else
+            ((ILogger)this).LogError(message);
+    }
 }

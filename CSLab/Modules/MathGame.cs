@@ -3,24 +3,28 @@ using static System.Math;
 
 namespace CSLab.Modules;
 
+/// <summary>
+/// Math game class
+/// </summary>
 internal class MathGame
 {
-    private readonly InputHandler _inputHandler;
     private readonly ILogger _logger;
 
-    public MathGame(InputHandler inputHandler, ILogger logger)
+    public MathGame( ILogger logger)
     {
-        _inputHandler = inputHandler;
         _logger = logger;
     }
 
+    /// <summary>
+    /// Method to start the game
+    /// </summary>
     internal void Start()
     {
         WriteLine("Угадака\n");
 
-        double a = _inputHandler.GetInputByPattern<double>("Введите a ≠ π/2 + k, k ∊ ℤ: ",
+        double a = InputHandler.GetInputByPattern<double>("Введите a ≠ π/2 + k, k ∊ ℤ: ",
             input => input % (PI / 2) != 0);
-        double b = _inputHandler.GetInputByPattern<double>("Введите b ≠ 0: ",
+        double b = InputHandler.GetInputByPattern<double>("Введите b ≠ 0: ",
             input => input != 0);
 
         GuessCorrectResult(a, b);

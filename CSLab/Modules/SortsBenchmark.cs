@@ -2,12 +2,20 @@
 
 namespace CSLab.Modules;
 
+/// <summary>
+/// Class to benchmark sorting algorithms
+/// </summary>
+/// <typeparam name="T"></typeparam>
 internal class SortsBenchmark<T> where T : IComparable<T>
 {
     private readonly Stopwatch _stopwatch = new();
     private T[] _array1;
     private T[] _array2;
     
+    /// <summary>
+    /// Method to run the benchmark
+    /// </summary>
+    /// <param name="arr"></param>
     internal void Run(T[] arr)
     {
         Init(arr);

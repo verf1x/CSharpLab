@@ -1,27 +1,32 @@
 ﻿using CSLab.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CSLab.Modules;
 
+/// <summary>
+/// Represents the main class of the application
+/// </summary>
 internal class Application
 {
-    private readonly IMenuService _menu;
+    private readonly Menu _menu;
     private readonly ILogger _logger;
-    private readonly ApplicationHelper _applicationHelper;
-    private readonly ArrayTools _arrayTools;
     private readonly MathGame _mathGame;
     private readonly SortsBenchmark<int> _sortsBenchmark;
+    private readonly Tetris _tetris;
     private bool _isRunning;
     
-    public Application(IMenuService menuService, ILogger logger, ApplicationHelper applicationHelper, ArrayTools arrayTools, MathGame mathGame, SortsBenchmark<int> sortsBenchmark)
+    public Application(IServiceProvider serviceProvider)
     {
-        _menu = menuService;
-        _logger = logger;
-        _applicationHelper = applicationHelper;
-        _arrayTools = arrayTools;
-        _mathGame = mathGame;
-        _sortsBenchmark = sortsBenchmark;
+        _menu = serviceProvider.GetRequiredService<Menu>();
+        _logger = serviceProvider.GetRequiredService<ILogger>();
+        _mathGame = serviceProvider.GetRequiredService<MathGame>();
+        _sortsBenchmark = serviceProvider.GetRequiredService<SortsBenchmark<int>>();
+        _tetris = serviceProvider.GetRequiredService<Tetris>();
     }
     
+    /// <summary>
+    /// Runs the application
+    /// </summary>
     internal void Run()
     {
         _isRunning = true;
@@ -36,7 +41,8 @@ internal class Application
                 1 => _mathGame.Start,
                 2 => PrintAuthor,
                 3 => SortArray,
-                4 => Exit,
+                4 => _tetris.Run,
+                5 => Exit,
                 _ => () => _logger.LogIncorrectInput()
             };
             
@@ -53,7 +59,7 @@ internal class Application
     private void MoveToBlankPage()
     {
         Console.Clear();
-        _applicationHelper.PrintTitle();
+        ApplicationHelper.PrintTitle();
     }
 
     private void ReturnToMenuByPressingKey()
@@ -74,7 +80,9 @@ internal class Application
 
         while (!isCorrectInput)
         {
-            int[] arrayToSort = _arrayTools.GetFilledWithNumbersArray();
+            
+            // int[] arrayToSort = new ArrayTools(13).GetFilledWithNumbersArray();
+            int[] arrayToSort = new ArrayTools().GetFilledWithNumbersArray();
 
             if (arrayToSort.Length > 0)
             {

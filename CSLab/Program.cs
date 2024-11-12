@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CSLab;
 
-internal class Program
+file class Program
 {
     private static void Main(string[] args)
     {
@@ -25,13 +25,17 @@ internal class Program
     private static void ConfigureServices(ServiceCollection services)
     {
         services.AddSingleton<Application>();
-        services.AddSingleton<ApplicationHelper>();
-        services.AddSingleton<InputHandler>();
         services.AddSingleton<ILogger, SimpleLogger>();
-        services.AddSingleton<IMenuService, Menu>();
-        services.AddSingleton<ArrayTools>();
+        services.AddSingleton<Menu>();
         services.AddSingleton<MathGame>();
         services.AddSingleton(typeof(SortsBenchmark<>));
+        services.AddSingleton<Tetris>();
+        services.AddSingleton<Piece>();
+        services.AddSingleton<IBoard, Board>();
+        services.AddSingleton<IInputHandler, ConsoleInputHandler>();
+        services.AddSingleton<IRenderer, ConsoleRenderer>();
+        services.AddSingleton<IPieceGenerator, PieceGenerator>();
+        services.AddSingleton<IScoreManager, ScoreManager>();
     }
 
     private static void SetupEncodingAndCulture()

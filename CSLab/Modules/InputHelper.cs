@@ -2,16 +2,12 @@
 
 namespace CSLab.Modules;
 
-internal class InputHandler
+/// <summary>
+/// Input handler class
+/// </summary>
+internal static class InputHandler
 {
-    private readonly ILogger _logger;
-    
-    public InputHandler(ILogger logger)
-    {
-        _logger = logger;
-    }
-    
-    private bool TryParse<T>(string input, out T result)
+    private static bool TryParse<T>(string input, out T result)
     {
         try
         {
@@ -25,7 +21,13 @@ internal class InputHandler
         }
     }
     
-    internal T GetInputByPattern<T>(string pattern, Func<T, bool> validate = null)
+    /// <summary>
+    /// Method to get input by pattern
+    /// </summary>
+    /// <param name="pattern">pattern for user</param>
+    /// <param name="validate">checks if input matching pattern</param>
+    /// <returns>value</returns>
+    internal static T GetInputByPattern<T>(string pattern, Func<T, bool> validate = null)
     {
         T result;
         bool isCorrectInput = false;
@@ -37,7 +39,11 @@ internal class InputHandler
             if (TryParse(ReadLine(), out result) && (validate is null || validate(result)))
                 isCorrectInput = true;
             else
-                _logger.LogIncorrectInput();
+            {
+                ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Некорректный ввод. Попробуйте еще раз.");
+                ForegroundColor = ConsoleColor.Gray;
+            }
         } while (!isCorrectInput);
         
         return result;

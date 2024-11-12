@@ -2,18 +2,17 @@
 
 namespace CSLab.Modules;
 
-internal class Menu : IMenuService
+/// <summary>
+/// Class that represents a menu
+/// </summary>
+internal class Menu
 {
-    private readonly ApplicationHelper _applicationHelper;
     private readonly ILogger _logger;
-    private readonly InputHandler _inputHandler;
     private readonly Dictionary<int, string> _menuItems;
 
-    public Menu(ApplicationHelper applicationHelper, ILogger logger, InputHandler inputHandler)
+    public Menu(ILogger logger)
     {
-        _applicationHelper = applicationHelper;
         _logger = logger;
-        _inputHandler = inputHandler;
         _menuItems = [];
         InitializeMenu();
     }
@@ -23,32 +22,44 @@ internal class Menu : IMenuService
         _menuItems.Add(1, "Угадака");
         _menuItems.Add(2, "Об авторе");
         _menuItems.Add(3, "Сортировка массива");
-        _menuItems.Add(4, "Выход\n");
+        _menuItems.Add(4, "Сыграть в тетрис");
+        _menuItems.Add(5, "Выход\n");
     }
 
-    void IMenuService.Display()
+    /// <summary>
+    /// Display the menu
+    /// </summary>
+    internal void Display()
     {
         Console.Clear();
-        _applicationHelper.PrintTitle();
+        ApplicationHelper.PrintTitle();
 
         foreach (var item in _menuItems)
             WriteLine($"{item.Key}. {item.Value}");
     }
 
-    int IMenuService.GetUserChoice()
+    /// <summary>
+    /// Get user choice from the menu
+    /// </summary>
+    /// <returns></returns>
+    internal int GetUserChoice()
     {
-        int choice = _inputHandler.GetInputByPattern<int>("Выберите пункт меню: ",
+        int choice = InputHandler.GetInputByPattern<int>("Выберите пункт меню: ",
             input => input >= 1 && input <= _menuItems.Count);
 
         return choice;
     }
 
-    bool IMenuService.ConfirmExit()
+    /// <summary>
+    /// Ask user to confirm exit
+    /// </summary>
+    /// <returns></returns>
+    internal bool ConfirmExit()
     {
         Console.Clear();
-        _applicationHelper.PrintTitle();
+        ApplicationHelper.PrintTitle();
 
-        return _inputHandler.GetInputByPattern<string>("Вы уверены, что хотите выйти? (д/н): ",
+        return InputHandler.GetInputByPattern<string>("Вы уверены, что хотите выйти? (д/н): ",
             input => input == "д" || input == "н") == "д";
         
     }    

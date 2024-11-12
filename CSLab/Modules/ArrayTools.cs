@@ -1,12 +1,17 @@
 ﻿namespace CSLab.Modules;
 
+/// <summary>
+/// Array tools class
+/// </summary>
 internal class ArrayTools
 {
-    private readonly InputHandler _inputHandler;
+    private readonly int _arrayLength;
+
+    internal ArrayTools() : this(10) { }
     
-    public ArrayTools(InputHandler inputHandler)
+    internal ArrayTools(int length)
     {
-        _inputHandler = inputHandler;
+        _arrayLength = length;
     }
     
     private int[] FillNumbersArray(int length)
@@ -21,10 +26,12 @@ internal class ArrayTools
         return result;
     }
 
+    /// <summary>
+    /// Returns filled with numbers array
+    /// </summary>
+    /// <returns></returns>
     internal int[] GetFilledWithNumbersArray()
     {
-        int length = _inputHandler.GetInputByPattern<int>("Введите размер массива: ", input => input > 0);
-
-        return FillNumbersArray(length);
+        return FillNumbersArray(_arrayLength);
     }
 }
