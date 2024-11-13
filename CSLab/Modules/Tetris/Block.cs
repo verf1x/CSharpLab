@@ -3,14 +3,15 @@
 /// <summary>
 /// Represent a block in the game
 /// </summary>
-internal class Block
+internal class Block(int x, int y)
 {
-    public int X { get; }
-    public int Y { get; }
+    /// <summary>
+    /// X property
+    /// </summary>
+    public int X { get; } = x;
 
-    public Block(int x, int y)
-    {
-        X = x;
-        Y = y;
-    }
+    /// <summary>
+    /// Y property
+    /// </summary>
+    public int Y { get; } = y;
 }

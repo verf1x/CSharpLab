@@ -19,9 +19,8 @@ internal class PieceGenerator : IPieceGenerator
     Piece IPieceGenerator.GetNextPiece()
     {
         if (_bag.Count == 0)
-        {
             _bag = GenerateShuffledBag();
-        }
+        
         return _bag.Dequeue();
     }
 

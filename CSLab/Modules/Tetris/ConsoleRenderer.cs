@@ -68,7 +68,7 @@ internal class ConsoleRenderer : IRenderer
         {
             if (piece == null)
             {
-                Console.WriteLine("[Empty]");
+                Console.WriteLine();
                 return;
             }
 
@@ -100,32 +100,16 @@ internal class ConsoleRenderer : IRenderer
 
         private void SetCellColor(char cell)
         {
-            switch (cell)
+            ForegroundColor = cell switch
             {
-                case 'O':
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    break;
-                case 'I':
-                    Console.ForegroundColor = ConsoleColor.Cyan;
-                    break;
-                case 'T':
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                    break;
-                case 'S':
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    break;
-                case 'Z':
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    break;
-                case 'J':
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    break;
-                case 'L':
-                    Console.ForegroundColor = ConsoleColor.DarkYellow;
-                    break;
-                default:
-                    Console.ResetColor();
-                    break;
-            }
+                'O' => ConsoleColor.Yellow,
+                'I' => ConsoleColor.Cyan,
+                'T' => ConsoleColor.Magenta,
+                'S' => ConsoleColor.Green,
+                'Z' => ConsoleColor.Red,
+                'J' => ConsoleColor.Blue,
+                'L' => ConsoleColor.DarkYellow,
+                _ => ConsoleColor.White
+            };
         }
     }

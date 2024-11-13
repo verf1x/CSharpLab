@@ -25,10 +25,10 @@ internal class Piece
     {
         var blocks = new List<Block>();
         int[,] shape = GetRotation(rotation);
+        
         for (int i = 0; i < shape.GetLength(0); i++)
-        {
             blocks.Add(new Block(shape[i, 0], shape[i, 1]));
-        }
+        
         return blocks;
     }
 
@@ -36,6 +36,7 @@ internal class Piece
     {
         int rotationIndex = rotation % _rotations.GetLength(0);
         int[,] rotationShape = new int[_rotations.GetLength(1), 2];
+        
         for (int i = 0; i < _rotations.GetLength(1); i++)
         {
             rotationShape[i, 0] = _rotations[rotationIndex, i, 0];

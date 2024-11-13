@@ -5,7 +5,6 @@ namespace CSLab.Modules;
 /// <summary>
 /// Class to benchmark sorting algorithms
 /// </summary>
-/// <typeparam name="T"></typeparam>
 internal class SortsBenchmark<T> where T : IComparable<T>
 {
     private readonly Stopwatch _stopwatch = new();

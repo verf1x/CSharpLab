@@ -8,7 +8,14 @@ internal class Board : IBoard
         private readonly char[,] _grid;
         private const char EmptyCell = '-';
 
+        /// <summary>
+        /// Board Width
+        /// </summary>
         public int Width { get; } = 10;
+        
+        /// <summary>
+        /// Board Height
+        /// </summary>
         public int Height { get; } = 10;
 
         public Board()
@@ -26,9 +33,7 @@ internal class Board : IBoard
                 int boardY = y + block.Y;
 
                 if (IsOutOfBounds(boardX, boardY) || IsCellOccupied(boardX, boardY))
-                {
                     return false;
-                }
             }
             return true;
         }
@@ -85,25 +90,19 @@ internal class Board : IBoard
         private bool IsLineComplete(int y)
         {
             for (int x = 0; x < Width; x++)
-            {
                 if (_grid[y, x] == EmptyCell)
                     return false;
-            }
+            
             return true;
         }
 
         private void RemoveLine(int y)
         {
             for (int row = y; row > 0; row--)
-            {
                 for (int col = 0; col < Width; col++)
-                {
                     _grid[row, col] = _grid[row - 1, col];
-                }
-            }
+            
             for (int col = 0; col < Width; col++)
-            {
                 _grid[0, col] = EmptyCell;
-            }
         }
     }

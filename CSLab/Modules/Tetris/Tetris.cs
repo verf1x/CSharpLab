@@ -12,7 +12,7 @@ internal class Tetris
         private readonly IInputHandler _inputHandler;
         private readonly IRenderer _renderer;
         private readonly IScoreManager _scoreManager;
-        private readonly ILogger _logger;
+        private readonly int _dropInterval;
 
         private Piece _currentPiece;
         private Piece _holdPiece;
@@ -22,7 +22,6 @@ internal class Tetris
         private int _currentRotation;
         private bool _isGameOver;
         private int _dropTimer;
-        private int _dropInterval;
 
         public Tetris(
             IBoard board,
@@ -36,7 +35,6 @@ internal class Tetris
             _inputHandler = inputHandler;
             _renderer = renderer;
             _scoreManager = scoreManager;
-
             _dropInterval = 20;
         }
 
@@ -48,16 +46,18 @@ internal class Tetris
             RestartGame();
             Console.Clear();
             InitializeGame();
-            Task inputTask = Task.Run(() => HandleInput());
+            
+            Task.Run(HandleInput);
 
             while (!_isGameOver)
             {
                 UpdateGame();
-                _renderer.Render(_board.GetBoardState(), _currentPiece, _currentX, _currentY, _holdPiece, _nextPiece, _scoreManager.Score, _currentRotation);
+                _renderer.Render(_board.GetBoardState(), _currentPiece, _currentX, _currentY, _holdPiece,
+                    _nextPiece, _scoreManager.Score, _currentRotation);
                 Thread.Sleep(20);
             }
             
-            Console.CursorVisible = true;
+            CursorVisible = true;
             GameOver();
         }
 
@@ -215,7 +215,7 @@ internal class Tetris
 
             ForegroundColor = ConsoleColor.Red;
             
-            bool restart = InputHandler.GetInputByPattern<string>("Игра окончена. Хотите начать заново? (д/н): ",
+            bool restart = InputHandler.GetInputByPattern<string>("Ты проиграл! Ты Лузер! Хочешь начать заново? (д/н): ",
                 input => input == "д" || input == "н") == "д";
             
             if (restart)
