@@ -21,10 +21,10 @@ internal class Board : IBoard
         public Board()
         {
             _grid = new char[Height, Width];
-            ((IBoard)this).Reset();
+            Reset();
         }
 
-        bool IBoard.IsPositionValid(Piece piece, int x, int y, int rotation)
+        public bool IsPositionValid(Piece piece, int x, int y, int rotation)
         {
             var blocks = piece.GetBlocks(rotation);
             foreach (var block in blocks)
@@ -38,7 +38,7 @@ internal class Board : IBoard
             return true;
         }
 
-        void IBoard.PlacePiece(Piece piece, int x, int y, int rotation)
+        public void PlacePiece(Piece piece, int x, int y, int rotation)
         {
             var blocks = piece.GetBlocks(rotation);
             foreach (var block in blocks)
@@ -49,7 +49,7 @@ internal class Board : IBoard
             }
         }
 
-        int IBoard.ClearCompletedLines()
+        public int ClearCompletedLines()
         {
             int linesCleared = 0;
             for (int y = 0; y < Height; y++)
@@ -63,14 +63,14 @@ internal class Board : IBoard
             return linesCleared;
         }
 
-        char[,] IBoard.GetBoardState()
+        public char[,] GetBoardState()
         {
             var stateCopy = new char[Height, Width];
             Array.Copy(_grid, stateCopy, _grid.Length);
             return stateCopy;
         }
 
-        void IBoard.Reset()
+        public void Reset()
         {
             for (int y = 0; y < Height; y++)
                 for (int x = 0; x < Width; x++)

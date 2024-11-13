@@ -16,7 +16,7 @@ internal class PieceGenerator : IPieceGenerator
         _bag = GenerateShuffledBag();
     }
 
-    Piece IPieceGenerator.GetNextPiece()
+    public Piece GetNextPiece()
     {
         if (_bag.Count == 0)
             _bag = GenerateShuffledBag();

@@ -8,24 +8,24 @@ internal interface ILogger
     /// <summary>
     /// Logging message as information
     /// </summary>
-    /// <param name="message"></param>
+    /// <param name="message">message to log</param>
     void LogInformation(string message);
     
     /// <summary>
     /// Logging message as warning
     /// </summary>
-    /// <param name="message"></param>
+    /// <param name="message">message to log</param>
     void LogWarning(string message);
     
     /// <summary>
     /// Logging message as error
     /// </summary>
-    /// <param name="message"></param>
+    /// <param name="message">message to log</param>
     void LogError(string message);
     
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="message"></param>
+    /// <param name="message">message to log</param>
     void LogIncorrectInput(string message = null);
 }

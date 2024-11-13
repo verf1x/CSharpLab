@@ -1,5 +1,4 @@
 ﻿global using static System.Console;
-
 using System.Text;
 using CSLab.Interfaces;
 using CSLab.Modules;

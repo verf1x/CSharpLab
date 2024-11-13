@@ -5,6 +5,9 @@
 /// </summary>
 internal static class TetrominoShapes
 {
+    /// <summary>
+    /// Represents the O shape
+    /// </summary>
     internal static readonly int[,,] OShape = new int[,,]
     {
         {
@@ -12,6 +15,9 @@ internal static class TetrominoShapes
         }
     };
 
+    /// <summary>
+    /// Represents the I shape
+    /// </summary>
     internal static readonly int[,,] IShape = new int[,,]
     {
         {
@@ -22,6 +28,9 @@ internal static class TetrominoShapes
         }
     };
 
+    /// <summary>
+    /// Represents the T shape
+    /// </summary>
     internal static readonly int[,,] TShape = new int[,,]
     {
         {
@@ -38,6 +47,9 @@ internal static class TetrominoShapes
         }
     };
 
+    /// <summary>
+    /// Represents the S shape
+    /// </summary>
     internal static readonly int[,,] SShape = new int[,,]
     {
         {
@@ -48,6 +60,9 @@ internal static class TetrominoShapes
         }
     };
 
+    /// <summary>
+    /// Represents the Z shape
+    /// </summary>
     internal static readonly int[,,] ZShape = new int[,,]
     {
         {
@@ -58,6 +73,9 @@ internal static class TetrominoShapes
         }
     };
 
+    /// <summary>
+    /// Represents the J shape
+    /// </summary>
     internal static readonly int[,,] JShape = new int[,,]
     {
         {
@@ -74,6 +92,9 @@ internal static class TetrominoShapes
         }
     };
 
+    /// <summary>
+    /// Represents the L shape
+    /// </summary>
     internal static readonly int[,,] LShape = new int[,,]
     {
         {

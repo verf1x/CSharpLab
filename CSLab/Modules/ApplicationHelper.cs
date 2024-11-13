@@ -5,6 +5,9 @@
 /// </summary>
 internal static class ApplicationHelper
 {
+    /// <summary>
+    /// Default console color
+    /// </summary>
     internal static ConsoleColor DefaultColor => ConsoleColor.Gray;
 
     /// <summary>

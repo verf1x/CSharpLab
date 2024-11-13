@@ -5,7 +5,7 @@
 /// </summary>
 internal class ConsoleRenderer : IRenderer
     {
-        void IRenderer.Render(char[,] boardState, Piece currentPiece, int currentX, int currentY, Piece holdPiece, Piece nextPiece, int score, int currentRotation)
+        public void Render(char[,] boardState, Piece currentPiece, int currentX, int currentY, Piece holdPiece, Piece nextPiece, int score, int currentRotation)
         {
             Console.SetCursorPosition(0, 0);
             Console.CursorVisible = false;

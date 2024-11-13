@@ -7,25 +7,25 @@ namespace CSLab.Modules;
 /// </summary>
 internal class SimpleLogger : ILogger
 {
-    void ILogger.LogInformation(string message)
+    public void LogInformation(string message)
     {
         WriteLine($"{message}\n");
     }
 
-    void ILogger.LogWarning(string message)
+    public void LogWarning(string message)
     {
         ForegroundColor = ConsoleColor.Yellow;
         WriteLine($"{message}\n");
     }
 
-    void ILogger.LogError(string message)
+    public void LogError(string message)
     {
         ForegroundColor = ConsoleColor.Red;
         WriteLine($"{message}\n");
         ForegroundColor = ApplicationHelper.DefaultColor;
     }
 
-    void ILogger.LogIncorrectInput(string message)
+    public void LogIncorrectInput(string message)
     {
         if (message is null)
             WriteLine("Некорректный ввод\n");

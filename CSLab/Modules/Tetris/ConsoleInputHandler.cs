@@ -5,13 +5,12 @@
 /// </summary>
 internal class ConsoleInputHandler : IInputHandler
 {
-    ConsoleKey? IInputHandler.GetInput()
+    public ConsoleKey? GetInput()
     {
-        if (Console.KeyAvailable)
-        {
-            var keyInfo = Console.ReadKey(true);
-            return keyInfo.Key;
-        }
-        return null;
+        if (!Console.KeyAvailable) 
+            return null;
+        
+        ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+        return keyInfo.Key;
     }
 }

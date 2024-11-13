@@ -7,7 +7,7 @@ internal class ScoreManager : IScoreManager
 {
     public int Score { get; private set; }
 
-    void IScoreManager.AddScore(int linesCleared)
+    public void AddScore(int linesCleared)
     {
         int points = linesCleared switch
         {
@@ -20,7 +20,7 @@ internal class ScoreManager : IScoreManager
         Score += points;
     }
 
-    void IScoreManager.Reset()
+    public void Reset()
     {
         Score = 0;
     }
